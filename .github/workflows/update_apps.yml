@@ -72,7 +72,7 @@ jobs:
           
           if test -f /tmp/failed_apps; then
             echo "FAILED_APPS<<EOF" >> $GITHUB_ENV
-            cat /tmp/failed_apps >> $GITHUB_ENV
+            cat /tmp/failed_apps | sed '0~1 a\\' >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
           fi
 
