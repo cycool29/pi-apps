@@ -69,6 +69,12 @@ jobs:
             cat /tmp/updated_apps_sorted >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
           fi
+          
+          if test -f /tmp/failed_apps; then
+            echo "FAILED_APPS<<EOF" >> $GITHUB_ENV
+            cat /tmp/failed_apps >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+          fi
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
@@ -85,3 +91,5 @@ jobs:
             Apps updated:
 
             ${{ env.UPDATED_APPS }}
+
+            ${{ env.FAILED_APPS }}
